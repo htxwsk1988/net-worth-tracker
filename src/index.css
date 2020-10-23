@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+table {
+  border: none;
+  width: 60%;
+  left: 0px;
+  padding-right: 40px;
+  height: 10px;
+  overflow-y: scroll;
+}
+
+td,
+th {
+  padding: 5px;
+  text-align: left;
+  height: 5;
+}
+
+th {
+  border-bottom-style: solid;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
