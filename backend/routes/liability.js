@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const Client = require('node-rest-client').Client;
+const client = new Client();
 
 let liabilities = [
     {id: '1', name: 'Credit Card 1', monthlyPayment: 200, amount: 4342, shortTerm: true},
@@ -12,6 +14,22 @@ let liabilities = [
 ];
 
 router.route('/').get((req, res) => res.json(liabilities));
+
+router.route('/sum').get((req, res) => {
+    let sum=0;
+    liabilities.forEach(liability => sum += 1 * liability.amount);
+
+    const currency = req.query && req.query.currency;
+
+    if (currency) {
+        client.get("http://localhost:5000/currencies/"+ currency, data => {
+            // console.log(data);
+            const rate = data.rate;
+            sum *= rate;
+            res.json(sum)
+        });
+    }
+});
 
 router.route('/:id').get((req, res) => res.json(liabilities.find(liability => liability.id === req.params.id)));
 

@@ -37,13 +37,16 @@ class Asset extends Component {
         return (
             <tr key={this.state.id}>
                 <td> {this.state.name} </td>
-                <td> 
-                    <input 
-                        type="number"
-                        value={this.state.amount}
-                        onChange={this.onChangeHandler}
-                        onBlur={this.onBlurHandler}
-                        /> 
+                <td width='30%'>
+                    <div className='leftContainer'> {this.props.currencySymbol} </div>
+                    <div className='rightContainer'>
+                        <input 
+                            type="number"
+                            value={this.state.amount}
+                            onChange={this.onChangeHandler}
+                            onBlur={this.onBlurHandler}
+                            /> 
+                    </div>
                 </td>
             </tr>
         )

@@ -28,22 +28,26 @@ class Liability extends Component {
     }
 
     formatCurrency(amount) {
-        return new Intl.NumberFormat('en-US',
-            { style: 'currency', currency: 'USD' }
-            ).format(amount);
+        return amount.toFixed(2).toLocaleString();
     };
     
     render() {
         return (
             <tr key={this.state.id}>
                 <td> {this.state.name} </td>
-                <td width='30%'> {this.state.monthlyPayment} </td>
                 <td width='30%'> 
-                    <input 
-                        type="number" 
-                        value={this.state.amount} 
-                        onChange={this.onChangeHandler}
-                        onBlur={this.onBlurHandler}/> 
+                    <div className='leftContainer'> {this.props.currencySymbol} </div>
+                    <div className='rightContainer'> {this.formatCurrency(this.state.monthlyPayment)} </div>
+                </td>
+                <td width='30%'> 
+                    <div className='leftContainer'> {this.props.currencySymbol} </div>
+                    <div className='rightContainer'>
+                        <input 
+                            type="number" 
+                            value={this.state.amount} 
+                            onChange={this.onChangeHandler}
+                            onBlur={this.onBlurHandler}/>
+                    </div>
                 </td>
             </tr>
         )

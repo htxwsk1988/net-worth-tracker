@@ -25,6 +25,7 @@ th {
 
 th {
   border-bottom-style: solid;
+  border-bottom-width: 2px;
   color: grey;
 }
 
@@ -33,10 +34,21 @@ input {
   border-bottom: 1px solid lightgray;
 }
 
+.networth,
 .totalAssets,
 .totalLiabilities {
   font-weight: bold;
-  color: red;
+  color: blue;
+}
+
+.leftContainer {
+  text-align: left;
+  display: inline;
+}
+
+.rightContainer {
+  text-align: right;
+  display: inline;
 }
 
 code {

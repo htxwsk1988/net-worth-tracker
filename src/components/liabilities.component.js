@@ -3,7 +3,7 @@ import axios from 'axios';
 import Liability from './liability.component';
 
 class Liabilities extends Component {
-    state = {}
+    state = { }
 
     constructor(props) {
         super(props);
@@ -12,34 +12,18 @@ class Liabilities extends Component {
         this.renderAssetData = this.renderAssetData.bind(this);
 
         this.state = {
-            liabilities: [],
-            totalLiabilities: 0
+            liabilities: []
         }
     }
 
     componentDidMount() {
         axios.get('http://localhost:5000/liabilities')
-            .then(res => {
-                let liabilities = res && res.data;
-                this.setState({liabilities});
-                
-                let totalLiabilities=0;
-                liabilities.forEach(liability => totalLiabilities += 1 * liability.amount);
-                this.setState({totalLiabilities});
-            })
+            .then(res => this.setState({liabilities: res && res.data}))
             .catch(err => console.log(err));
     }
 
     onBlurHandler() {
-        axios.get('http://localhost:5000/liabilities')
-            .then(res => {
-                let liabilities = res && res.data;
-                
-                let totalLiabilities=0;
-                liabilities.forEach(liability => totalLiabilities += 1 * liability.amount);
-                this.setState({totalLiabilities});
-            })
-            .catch(err => console.log(err));
+        return this.props.onBlurHandler();
     }
 
     renderAssetData(shortTerm) {
@@ -48,16 +32,14 @@ class Liabilities extends Component {
                 {
                 this.state.liabilities
                     .filter(liability => liability.shortTerm === shortTerm)
-                    .map((liability) => <Liability key={liability.id} liability={liability} onBlurHandler={this.onBlurHandler}/>)
+                    .map((liability) => <Liability key={liability.id} liability={liability} currencySymbol={this.props.currencySymbol} onBlurHandler={this.onBlurHandler}/>)
                 }
             </tbody>
         );
      }
 
     formatCurrency(amount) {
-        return new Intl.NumberFormat('en-US',
-            { style: 'currency', currency: 'USD' }
-            ).format(amount);
+        return amount.toFixed(2).toLocaleString();
     };
     
     render() { 
@@ -77,7 +59,10 @@ class Liabilities extends Component {
                 { this.renderAssetData(false) }
                 <tr className='totalLiabilities'>
                     <td colSpan={2} >Total Liabilities</td>
-                    <td>{this.formatCurrency(this.state.totalLiabilities)}</td>
+                    <td>
+                        <div className='leftContainer'> {this.props.currencySymbol} </div>
+                        <div className='rightContainer'> {this.formatCurrency(this.props.totalLiabilities)} </div>
+                    </td>
                 </tr>
             </table>
         );
