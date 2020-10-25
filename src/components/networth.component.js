@@ -108,9 +108,17 @@ class Networth extends Component {
                     </tr>
                 </table>
                 <br/>
-                <Assets totalAssets={this.state.totalAssets} currency={this.state.currency} currencySymbol={this.getCurrencySymbol(this.state.currency)} onBlurHandler={this.onBlurHandler}/>
+                <Assets 
+                    totalAssets={this.state.totalAssets} 
+                    currency={this.state.currency} 
+                    currencySymbol={this.getCurrencySymbol(this.state.currency)} 
+                    onBlurHandler={this.onBlurHandler}/>
                 <br/>
-                <Liabilities totalLiabilities={this.state.totalLiabilities} currency={this.state.currency} currencySymbol={this.getCurrencySymbol(this.state.currency)} onBlurHandler={this.onBlurHandler}/>
+                <Liabilities 
+                    totalLiabilities={this.state.totalLiabilities} 
+                    currency={this.state.currency} 
+                    currencySymbol={this.getCurrencySymbol(this.state.currency)} 
+                    onBlurHandler={this.onBlurHandler}/>
             </div>
         );
     }

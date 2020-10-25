@@ -3,7 +3,6 @@ import axios from 'axios';
 import Asset from './asset.component';
 
 class Assets extends Component {
-    state = { }
 
     constructor(props) {
         super(props);
@@ -23,7 +22,7 @@ class Assets extends Component {
     }
 
     onBlurHandler() {
-        return this.props.onBlurHandler();
+        this.props.onBlurHandler();
     }
 
     formatCurrency(amount) {

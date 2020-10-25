@@ -14,7 +14,6 @@ class Asset extends Component {
 
         this.onChangeHandler= this.onChangeHandler.bind(this);
         this.onBlurHandler = this.onBlurHandler.bind(this);
-        // this.formatCurrency = this.formatCurrency.bind(this);
     }
 
     onChangeHandler(e) {
@@ -27,11 +26,9 @@ class Asset extends Component {
             .catch(err => console.log(err));
     }
 
-    // formatCurrency(amount) {
-    //     return new Intl.NumberFormat('en-US',
-    //         { style: 'currency', currency: 'USD' }
-    //         ).format(amount);
-    // };
+    formatCurrency(amount) {
+        return amount.toFixed(2).toLocaleString();
+    };
     
     render() {
         return (

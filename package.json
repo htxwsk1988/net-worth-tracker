@@ -13,6 +13,7 @@
     "react-dom": "^17.0.1",
     "react-input-number": "^5.0.19",
     "react-number-format": "^4.4.1",
+    "react-numeric-textbox": "^1.0.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.4"
   },

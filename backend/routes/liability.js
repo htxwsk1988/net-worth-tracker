@@ -13,7 +13,25 @@ let liabilities = [
     {id: '8', name: 'Car Loan', monthlyPayment: 0, amount: 0, shortTerm: false}
 ];
 
-router.route('/').get((req, res) => res.json(liabilities));
+router.route('/').get((req, res) => {
+    const currency = req.query && req.query.currency;
+
+    if (currency) {
+        client.get("http://localhost:5000/currencies/"+ currency, data => {
+            const rate = data.rate;
+            const newLiabilities = liabilities.map(liability => ({
+                id: liability.id,
+                name: liability.name,
+                monthlyPayment: liability.monthlyPayment * rate,
+                amount: liability.amount * rate,
+                shortTerm: liability.shortTerm
+            }));
+            return res.json(newLiabilities);
+        });
+    }  else {
+        return res.json(liabilities);
+    }
+});
 
 router.route('/sum').get((req, res) => {
     let sum=0;
@@ -28,6 +46,8 @@ router.route('/sum').get((req, res) => {
             sum *= rate;
             res.json(sum)
         });
+    }  else {
+        return res.json(sum);
     }
 });
 

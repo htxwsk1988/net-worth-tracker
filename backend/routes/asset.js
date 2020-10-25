@@ -18,7 +18,24 @@ let assets = [
     {id: '13', name: 'Second Home', amount: 1564321, shortTerm: false}
 ]
 
-router.route('/').get((req, res) => res.json(assets));
+router.route('/').get((req, res) => {
+    const currency = req.query && req.query.currency;
+
+    if (currency) {
+        client.get("http://localhost:5000/currencies/"+ currency, data => {
+            const rate = data.rate;
+            const newAssets = assets.map(asset => ({
+                id: asset.id,
+                name: asset.name,
+                amount: asset.amount * rate,
+                shortTerm: asset.shortTerm
+            }));
+            return res.json(newAssets)
+        });
+    }  else {
+        return res.json(assets);
+    }
+});
 
 router.route('/sum').get((req, res) => {
     let sum=0;
@@ -33,6 +50,8 @@ router.route('/sum').get((req, res) => {
             sum *= rate;
             res.json(sum)
         });
+    } else {
+        return res.json(sum);
     }
 });
 

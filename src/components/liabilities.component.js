@@ -3,7 +3,6 @@ import axios from 'axios';
 import Liability from './liability.component';
 
 class Liabilities extends Component {
-    state = { }
 
     constructor(props) {
         super(props);
@@ -23,7 +22,7 @@ class Liabilities extends Component {
     }
 
     onBlurHandler() {
-        return this.props.onBlurHandler();
+        this.props.onBlurHandler();
     }
 
     renderAssetData(shortTerm) {
