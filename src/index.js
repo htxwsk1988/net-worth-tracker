@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Assets from './components/assets';
-import Liabilities from './components/liabilities';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Assets />
-    <Liabilities />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

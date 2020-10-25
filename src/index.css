@@ -25,6 +25,18 @@ th {
 
 th {
   border-bottom-style: solid;
+  color: grey;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.totalAssets,
+.totalLiabilities {
+  font-weight: bold;
+  color: red;
 }
 
 code {
