@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  server:
+    build: ./server
+    expose:
+      - 5000
+    environment:
+      API_HOST: "http://localhost:3000"
+      APP_SERVER_PORT: 5000
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server/src:/srv/app/net-worth-tracker-server/src
+    command: nodemon server
+
+    client:
+      build: ./client
+      environment:
+        - REACT_APP_PORT:3000
+      expose:
+        - 3000
+      ports:
+        - 3000:3000
+      volumes:
+        - ./client/src:/srv/app/net-worth-tracker-client/src
+        - ./client/public:/srv/app/net-worth-tracker-client/public
+      links:
+        - server
+      command: npm run start

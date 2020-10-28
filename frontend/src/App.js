@@ -1,10 +1,13 @@
 import React from 'react';
-import Assets from './components/assets.component';
+import { Helmet } from 'react-helmet'
 import Networth from './components/networth.component';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Helmet>
+          <title>{ 'Net Worth Tracker' }</title>
+      </Helmet>
       <Networth />
     </div>
   );

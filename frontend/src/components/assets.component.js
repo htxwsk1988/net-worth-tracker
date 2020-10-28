@@ -44,6 +44,7 @@ class Assets extends Component {
     render() { 
         return (
             <table>
+                {/* <caption>Assets</caption> */}
                 <tr>
                     <th colSpan={2}>Assets</th>
                 </tr>
