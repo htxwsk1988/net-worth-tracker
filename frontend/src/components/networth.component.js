@@ -4,8 +4,7 @@ import Assets from './assets.component'
 import Liabilities from './liabilities.component'
 
 class Networth extends Component {
-    state = {  }
-
+    
     constructor(props) {
         super(props);
 
@@ -21,13 +20,23 @@ class Networth extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/assets/sum')
-            .then(res => this.setState({totalAssets: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/assets/sum', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({totalAssets: res && res.data}))
+        .catch(err => console.log(err));
 
-        axios.get('http://localhost:5000/liabilities/sum')
-            .then(res => this.setState({totalLiabilities: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/liabilities/sum', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({totalLiabilities: res && res.data}))
+        .catch(err => console.log(err));
     }
 
     onChangeCurrency(e) {
@@ -35,23 +44,43 @@ class Networth extends Component {
 
         this.setState({currency}); // async call
 
-        axios.get('http://localhost:5000/assets/sum?currency=' + currency)
+        axios.get('http://localhost:5000/assets/sum?currency=' + currency, {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
         .then(res => this.setState({totalAssets: res && res.data}))
         .catch(err => console.log(err));
 
-        axios.get('http://localhost:5000/liabilities/sum?currency=' + currency)
-            .then(res => this.setState({totalLiabilities: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/liabilities/sum?currency=' + currency, {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({totalLiabilities: res && res.data}))
+        .catch(err => console.log(err));
     }
 
     onBlurHandler() {
-        axios.get('http://localhost:5000/assets/sum')
+        axios.get('http://localhost:5000/assets/sum', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
         .then(res => this.setState({totalAssets: res && res.data}))
         .catch(err => console.log(err));
 
-        axios.get('http://localhost:5000/liabilities/sum')
-            .then(res => this.setState({totalLiabilities: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/liabilities/sum', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({totalLiabilities: res && res.data}))
+        .catch(err => console.log(err));
     }
 
     formatCurrency(amount) {

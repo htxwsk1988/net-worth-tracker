@@ -16,9 +16,14 @@ class Assets extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/assets')
-            .then(res => this.setState({assets: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/assets', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({assets: res && res.data}))
+        .catch(err => console.log(err));
     }
 
     onBlurHandler() {

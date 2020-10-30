@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Asset extends Component {
-    state = {
-        id: this.props.asset.id,
-        name: this.props.asset.name,
-        amount: this.props.asset.amount,
-        shortTerm: this.props.asset.shortTerm
-    }
 
     constructor(props) {
         super(props);
 
         this.onChangeHandler= this.onChangeHandler.bind(this);
         this.onBlurHandler = this.onBlurHandler.bind(this);
+
+        this.state = {
+            id: this.props.asset.id,
+            name: this.props.asset.name,
+            amount: this.props.asset.amount,
+            shortTerm: this.props.asset.shortTerm
+        }
     }
 
     onChangeHandler(e) {
@@ -21,7 +22,14 @@ class Asset extends Component {
     }
 
     onBlurHandler(e) {
-        axios.post('http://localhost:5000/assets/update/'+ this.props.asset.id, {amount : e.target.value})
+        axios.post('http://localhost:5000/assets/update/'+ this.props.asset.id, {
+            amount : e.target.value
+        }, {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
             .then(res => this.props.onBlurHandler())
             .catch(err => console.log(err));
     }

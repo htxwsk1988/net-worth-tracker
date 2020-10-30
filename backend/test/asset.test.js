@@ -11,6 +11,7 @@ describe("Assets", () => {
         it("should return all assets", (done) => {
             chai.request(app)
                 .get('/assets')
+                .auth('test', 'test')
                 .end((err, res) => {
                     res.should.have.status(200);
                     assert.strictEqual(res.body.length, 13);
@@ -21,6 +22,7 @@ describe("Assets", () => {
         it("should return searched asset", (done) => {
             chai.request(app)
                 .get('/assets/5')
+                .auth('test', 'test')
                 .end((err, res) => {
                     res.should.have.status(200);
                     assert.strictEqual(res.body.name, 'Savings for Travel');
@@ -31,6 +33,7 @@ describe("Assets", () => {
         it("should return assets sum", (done) => {
             chai.request(app)
                 .get('/assets/sum')
+                .auth('test', 'test')
                 .end((err, res) => {
                     res.should.have.status(200);
                     assert.strictEqual(res.body, 2200427);
@@ -43,6 +46,7 @@ describe("Assets", () => {
         it("should update asset amount", (done) => {
             chai.request(app)
                 .post('/assets/update/1')
+                .auth('test', 'test')
                 .send({ amount: 120 })
                 .end((err, res) => {
                     res.should.have.status(200);

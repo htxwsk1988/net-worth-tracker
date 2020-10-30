@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Client = require('node-rest-client').Client;
-const client = new Client();
+const options_auth = { user: "admin", password: "admin" };
+const client = new Client(options_auth);
 
 let liabilities = [
     {id: '1', name: 'Credit Card 1', monthlyPayment: 200, amount: 4342, shortTerm: true},
@@ -44,7 +45,7 @@ router.route('/sum').get((req, res) => {
             // console.log(data);
             const rate = data.rate;
             sum *= rate;
-            res.json(sum)
+            return res.json(sum)
         });
     }  else {
         return res.json(sum);

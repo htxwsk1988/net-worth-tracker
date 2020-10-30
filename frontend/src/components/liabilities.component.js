@@ -16,9 +16,14 @@ class Liabilities extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/liabilities')
-            .then(res => this.setState({liabilities: res && res.data}))
-            .catch(err => console.log(err));
+        axios.get('http://localhost:5000/liabilities', {
+            auth: {
+                username: 'admin',
+                password: 'admin'
+            }
+        })
+        .then(res => this.setState({liabilities: res && res.data}))
+        .catch(err => console.log(err));
     }
 
     onBlurHandler() {

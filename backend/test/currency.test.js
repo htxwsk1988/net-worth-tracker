@@ -11,6 +11,7 @@ describe("Currency", () => {
         it("should return all exhange rate", (done) => {
             chai.request(app)
                 .get('/currencies')
+                .auth('test', 'test')
                 .end((err, res) => {
                     res.should.have.status(200);
                     assert.strictEqual(res.body.length, 5);
@@ -21,6 +22,7 @@ describe("Currency", () => {
         it("should return searched currency rate by name", (done) => {
             chai.request(app)
                 .get('/currencies/JPY')
+                .auth('test', 'test')
                 .end((err, res) => {
                     res.should.have.status(200);
                     assert.strictEqual(res.body.rate, 79.73);
